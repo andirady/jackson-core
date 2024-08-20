@@ -16,16 +16,33 @@ import java.lang.reflect.Type;
  * with generic type to be implemented).
  * to ensure that a Type argument is indeed given.
  *<p>
- * Usage is by sub-classing: here is one way to instantiate reference
+ * Usage is by sub-classing: here are some ways to instantiate reference
  * to generic type <code>List&lt;Integer&gt;</code>:
+ * <ol>
+ *   <li> using factory method:
+ *<pre>
+ *  TypeReference&lt;List&lt;Integer&gt;&gt; ref = TypeReference.of(); 
+ *</pre></li>
+ *  <li> using anonymous sub-class:
  *<pre>
  *  TypeReference ref = new TypeReference&lt;List&lt;Integer&gt;&gt;() { };
- *</pre>
+ *</pre></li></ol>
  * which can be passed to methods that accept TypeReference, or resolved
  * using <code>TypeFactory</code> to obtain {@link ResolvedType}.
  */
 public abstract class TypeReference<T> implements Comparable<TypeReference<T>>
 {
+
+    /**
+     * Returns a type reference for the specified type.
+     *
+     * @param <T> the type to reference.
+     */
+    public static <T> TypeReference<T> of()
+    {
+        return new TypeReference<T>() {};
+    }
+
     protected final Type _type;
 
     protected TypeReference()

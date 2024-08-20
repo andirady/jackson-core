@@ -134,6 +134,14 @@ class TypeReferenceTest extends JUnit5TestBase
         ref.equals(null);
     }
 
+    @Test
+    void simpleWithFactory()
+    {
+        TypeReference<List<String>> ref = TypeReference.of();
+        assertNotNull(ref);
+        ref.equals(null);
+    }
+
     @SuppressWarnings("rawtypes")
     @Test
     void invalid()
